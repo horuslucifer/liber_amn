@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liber אמן — The Golden Cipher of AL II:76</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Major+Mono+Display&family=Frank+Ruhl+Libre:wght@500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#0a0a0f;--void2:#10101a;--ink:#070709;
+  --gold:#c9a44c;--gold-bright:#e8c879;--gold-deep:#8a6f2e;
+  --teal:#3fd8d0;--teal-deep:#1a8a85;
+  --plum:#9b6dd0;--plum-deep:#5b3a7a;
+  --rose:#d4607a;--rose-deep:#a8324a;
+  --bone:#ece6d8;--bone-dim:#9a9485;--faint:#5a5550;
+  --line:rgba(201,164,76,0.22);--line-soft:rgba(201,164,76,0.10);
+  --teal-line:rgba(63,216,208,0.28);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--void);color:var(--bone);font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;line-height:1.78;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+/* layered ground */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(ellipse 75% 45% at 50% -5%,rgba(201,164,76,0.09),transparent 55%),
+  radial-gradient(ellipse 55% 45% at 85% 40%,rgba(63,216,208,0.05),transparent 60%),
+  radial-gradient(ellipse 50% 40% at 10% 80%,rgba(155,109,208,0.05),transparent 62%),
+  linear-gradient(180deg,var(--ink),var(--void) 45%,var(--void2) 100%);}
+.bg-spiral{position:fixed;inset:0;z-index:0;pointer-events:none;display:flex;align-items:center;justify-content:center;opacity:0.05;}
+.bg-spiral svg{width:140vmin;height:140vmin;}
+.progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold-deep),var(--gold-bright),var(--teal));width:0;z-index:60;box-shadow:0 0 10px rgba(201,164,76,0.5);}
+.wrap{position:relative;z-index:2;max-width:760px;margin:0 auto;padding:0 30px;}
+
+/* hero */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;padding:60px 0;}
+.hero .spiralwrap{width:min(440px,82vw);margin:0 auto 10px;position:relative;}
+.hero .spiralwrap svg{width:100%;height:auto;overflow:visible;}
+.hero .kicker{font-family:'Major Mono Display',monospace;font-size:10px;letter-spacing:0.5em;color:var(--teal);margin-bottom:30px;}
+.hero .heb{font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:clamp(64px,15vw,120px);color:var(--gold-bright);direction:rtl;line-height:1;text-shadow:0 0 50px rgba(201,164,76,0.3);margin:6px 0;}
+.hero h1{font-family:'Cinzel',serif;font-weight:800;font-size:clamp(22px,5vw,34px);letter-spacing:0.12em;color:var(--bone);margin-top:14px;}
+.hero .figura{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.44em;color:var(--gold);margin-top:10px;}
+.hero .dek{font-style:italic;color:var(--bone-dim);font-size:17px;margin:26px auto 0;max-width:500px;}
+.hero .scrollcue{font-family:'Major Mono Display',monospace;font-size:9px;letter-spacing:0.3em;color:var(--faint);margin-top:40px;animation:pulse 2.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:0.3}50%{opacity:0.8}}
+.spiral-stroke{fill:none;stroke:var(--gold-bright);stroke-width:2.2;filter:drop-shadow(0 0 6px rgba(201,164,76,0.5));stroke-linecap:round;}
+.spiral-sq{fill:none;stroke:var(--gold-deep);stroke-width:0.6;opacity:0.4;}
+
+/* section system — each "movement" of the spiral */
+.movement{padding:70px 0 20px;scroll-margin-top:20px;position:relative;}
+.mv-head{margin-bottom:22px;}
+.mv-index{font-family:'Major Mono Display',monospace;font-size:11px;letter-spacing:0.34em;color:var(--teal);margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+.mv-index::before{content:"";width:var(--dotw,20px);height:1px;background:var(--teal);display:inline-block;}
+.mv-title{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(23px,5vw,32px);letter-spacing:0.05em;color:var(--gold-bright);line-height:1.15;text-shadow:0 0 28px rgba(201,164,76,0.2);}
+.mv-title.heb{font-family:'Frank Ruhl Libre',serif;font-weight:900;direction:rtl;}
+.lede{font-style:italic;color:var(--bone-dim);font-size:18px;border-left:2px solid var(--gold-deep);padding:6px 0 6px 18px;margin:18px 0;}
+p{margin:15px 0;}
+b,strong{color:var(--gold-bright);font-weight:600;}
+em{color:var(--bone-dim);}
+.heb{font-family:'Frank Ruhl Libre',serif;font-weight:700;color:var(--gold-bright);direction:rtl;unicode-bidi:isolate;}
+.grk{font-style:italic;color:var(--gold-bright);}
+
+/* proof panels — the verifiable spine, teal-railed (machine-checkable) */
+.proof{margin:22px 0;border:1px solid var(--teal-line);background:linear-gradient(135deg,rgba(63,216,208,0.04),rgba(7,7,9,0.6));}
+.proof .bar{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:9px 15px;border-bottom:1px solid var(--teal-line);background:rgba(63,216,208,0.05);}
+.proof .ttl{font-family:'Major Mono Display',monospace;font-size:10px;letter-spacing:0.2em;color:var(--teal);text-transform:uppercase;}
+.proof .tag{font-family:'Major Mono Display',monospace;font-size:8px;letter-spacing:0.14em;padding:3px 8px;border-radius:2px;white-space:nowrap;}
+.tag.pv{color:#7fe3b0;border:1px solid rgba(127,227,176,0.4);}
+.tag.cv{color:var(--gold-bright);border:1px solid rgba(201,164,76,0.4);}
+.tag.ip{color:var(--plum);border:1px solid rgba(155,109,208,0.45);}
+.proof .body{padding:15px 17px;}
+.calc{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--bone);line-height:2;letter-spacing:0.01em;overflow-x:auto;}
+.calc .hl{color:var(--gold-bright);}
+.calc .ok{color:#7fe3b0;}
+.calc .dim{color:var(--bone-dim);}
+.pnote{font-style:italic;color:var(--bone-dim);font-size:15px;line-height:1.6;margin-top:13px;padding-left:14px;border-left:1px dotted var(--gold-deep);}
+
+/* interpretation blocks — plum-railed (the meaning, full voice) */
+.interp{margin:24px 0;border:1px solid rgba(155,109,208,0.3);background:linear-gradient(135deg,rgba(155,109,208,0.05),rgba(7,7,9,0.5));padding:20px 22px;}
+.interp .lbl{font-family:'Major Mono Display',monospace;font-size:9px;letter-spacing:0.24em;color:var(--plum);text-transform:uppercase;margin-bottom:10px;display:block;}
+.interp p{margin:10px 0;font-size:17px;line-height:1.7;}
+.interp p:first-of-type{margin-top:0;}
+
+/* cipher band */
+.cipher{font-family:'Major Mono Display',monospace;font-size:clamp(11px,2.5vw,15px);letter-spacing:0.14em;text-align:center;color:var(--gold-bright);padding:20px 12px;margin:22px 0;background:linear-gradient(180deg,rgba(201,164,76,0.04),transparent);border-top:1px solid var(--line);border-bottom:1px solid var(--line);word-break:break-word;line-height:2;}
+
+/* pull quote */
+.pull{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:23px;color:var(--gold);text-align:center;margin:34px 0;padding:20px 28px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);line-height:1.5;}
+
+/* the ordeal — feature block for the prophecy at X */
+.ordeal{margin:34px 0;padding:34px 30px;text-align:center;position:relative;background:radial-gradient(ellipse 70% 90% at 50% 50%,rgba(168,50,74,0.10),rgba(7,7,9,0.6));border:1px solid rgba(212,96,122,0.4);}
+.ordeal .xmark{font-family:'Major Mono Display',monospace;font-size:56px;color:var(--rose);line-height:1;text-shadow:0 0 30px rgba(212,96,122,0.5);animation:xpulse 4s ease-in-out infinite;}
+@keyframes xpulse{0%,100%{text-shadow:0 0 30px rgba(212,96,122,0.4);opacity:0.85;}50%{text-shadow:0 0 50px rgba(212,96,122,0.7);opacity:1;}}
+.ordeal .olbl{font-family:'Major Mono Display',monospace;font-size:10px;letter-spacing:0.32em;color:var(--rose);text-transform:uppercase;margin:14px 0;}
+.ordeal .oquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;line-height:1.5;color:var(--gold-bright);margin:8px auto;max-width:520px;}
+.ordeal .ocite{font-family:'Major Mono Display',monospace;font-size:10px;letter-spacing:0.24em;color:var(--gold);margin-top:14px;}
+.ordeal .ogloss{font-style:italic;color:var(--bone-dim);font-size:16px;margin-top:20px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.6;}
+
+/* notation key */
+.key{margin:24px 0;border:1px solid var(--line);background:linear-gradient(135deg,rgba(201,164,76,0.04),rgba(7,7,9,0.55));}
+.key .kh{font-family:'Major Mono Display',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;padding:10px 16px;border-bottom:1px solid var(--line);}
+.key .kb{padding:14px 16px;display:grid;gap:14px;}
+.key .krow{font-size:15px;line-height:1.55;}
+.key .ksym{font-family:'JetBrains Mono',monospace;color:var(--gold-bright);font-size:13px;}
+.key .kseq{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--bone-dim);line-height:1.9;overflow-x:auto;}
+.key .kseq .mark{color:var(--gold-bright);}
+
+/* number cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:22px 0;}
+.ncard{border:1px solid var(--line);padding:18px 14px;text-align:center;background:linear-gradient(180deg,rgba(201,164,76,0.04),rgba(7,7,9,0.4));}
+.ncard .big{font-family:'Cinzel',serif;font-weight:900;font-size:34px;color:var(--gold-bright);line-height:1;text-shadow:0 0 20px rgba(201,164,76,0.25);}
+.ncard .sm{font-family:'Major Mono Display',monospace;font-size:9px;letter-spacing:0.12em;color:var(--bone-dim);text-transform:uppercase;margin-top:10px;line-height:1.5;}
+
+figure{margin:26px 0;}
+.figwrap{border:1px solid var(--line);background:linear-gradient(180deg,rgba(16,16,26,0.5),rgba(7,7,9,0.3));padding:22px 18px 14px;}
+figure svg{display:block;width:100%;height:auto;}
+figcaption{font-family:'Major Mono Display',monospace;font-size:9px;letter-spacing:0.16em;color:var(--bone-dim);text-align:center;margin-top:12px;text-transform:uppercase;}
+
+/* decryption table */
+.tbl{width:100%;border-collapse:collapse;margin:18px 0;font-family:'JetBrains Mono',monospace;font-size:11px;}
+.tbl th{background:rgba(63,216,208,0.06);color:var(--teal);font-weight:500;letter-spacing:0.08em;padding:8px 5px;border-bottom:1px solid var(--teal-line);text-transform:uppercase;font-size:9px;}
+.tbl td{padding:6px 5px;text-align:center;border-bottom:1px solid rgba(201,164,76,0.07);color:var(--bone-dim);}
+.tbl td.h{color:var(--gold-bright);}
+.tbl tr.mk td{background:rgba(212,96,122,0.12);color:var(--bone);}
+.tbl tr.or td{background:rgba(155,109,208,0.12);color:var(--bone);}
+
+/* ledger tiers */
+.tiers{display:grid;gap:14px;margin:20px 0;}
+.tier{border:1px solid var(--line);background:rgba(7,7,9,0.5);}
+.tier .th{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);font-family:'Major Mono Display',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;}
+.tier ul{list-style:none;padding:12px 16px;}
+.tier li{position:relative;padding:5px 0 5px 18px;color:var(--bone-dim);font-size:15px;line-height:1.55;}
+.tier li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;}
+.tier.pv .th{color:#7fe3b0;} .tier.pv li::before{background:#7fe3b0;}
+.tier.cv .th{color:var(--gold-bright);} .tier.cv li::before{background:var(--gold-bright);}
+.tier.ip .th{color:var(--plum);} .tier.ip li::before{background:var(--plum);}
+.tier li b{color:var(--bone);}
+
+/* contents */
+.toc{max-width:540px;margin:40px auto 30px;padding:28px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.toc .h{font-family:'Major Mono Display',monospace;font-size:10px;letter-spacing:0.4em;color:var(--teal);text-align:center;margin-bottom:22px;}
+.toc ol{list-style:none;counter-reset:mv;}
+.toc li{margin:7px 0;display:flex;gap:14px;align-items:baseline;font-size:16px;}
+.toc .n{font-family:'Major Mono Display',monospace;font-size:11px;color:var(--gold-deep);width:30px;flex-shrink:0;}
+.toc a{color:var(--bone-dim);text-decoration:none;font-style:italic;transition:color 0.2s;}
+.toc a:hover{color:var(--gold-bright);}
+
+/* closing */
+.coda{text-align:center;padding:60px 0 90px;margin-top:50px;border-top:1px solid var(--line);}
+.coda .phi{font-family:'Major Mono Display',monospace;font-size:54px;color:var(--gold);opacity:0.65;text-shadow:0 0 36px rgba(201,164,76,0.3);}
+.coda .law{font-style:italic;color:var(--teal);font-size:16px;margin-top:18px;}
+.coda .heb{font-size:34px;margin:18px 0;}
+.coda .seal{font-family:'Major Mono Display',monospace;font-size:9px;letter-spacing:0.24em;color:var(--gold-deep);margin-top:18px;line-height:1.9;}
+.xref{display:inline-block;font-family:'Major Mono Display',monospace;font-size:9px;letter-spacing:0.2em;color:var(--teal);text-decoration:none;border:1px solid var(--teal-deep);padding:9px 16px;margin:6px 5px;transition:all 0.25s;}
+.xref:hover{background:rgba(63,216,208,0.1);box-shadow:0 0 16px rgba(63,216,208,0.2);}
+
+.movement{opacity:0;transform:translateY(20px);transition:opacity 0.9s,transform 0.9s;}
+.movement.seen{opacity:1;transform:none;}
+
+/* prophetic succession */
+.lineage{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin:24px 0;}
+.lcard{position:relative;border:1px solid rgba(201,164,76,0.24);background:
+  radial-gradient(ellipse 80% 80% at 50% 0%,rgba(201,164,76,0.08),transparent 60%),
+  linear-gradient(180deg,rgba(16,16,26,0.62),rgba(7,7,9,0.42));padding:18px 14px 16px;min-height:190px;overflow:hidden;}
+.lcard::before{content:"";position:absolute;left:0;top:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold-deep),var(--gold-bright),var(--teal));opacity:0.65;}
+.lcard .sig{font-family:'Major Mono Display',monospace;font-size:22px;color:var(--teal);line-height:1;margin-bottom:14px;text-shadow:0 0 18px rgba(63,216,208,0.25);}
+.lcard .name{font-family:'Cinzel',serif;font-size:16px;line-height:1.18;color:var(--gold-bright);letter-spacing:0.05em;margin-bottom:8px;}
+.lcard .office{font-family:'Major Mono Display',monospace;font-size:8px;letter-spacing:0.16em;color:var(--bone-dim);text-transform:uppercase;line-height:1.6;margin-bottom:11px;}
+.lcard p{font-size:14.5px;line-height:1.55;color:var(--bone-dim);margin:0;}
+.axis{margin:28px 0;border:1px solid rgba(63,216,208,0.24);background:linear-gradient(90deg,rgba(63,216,208,0.05),rgba(201,164,76,0.04),rgba(155,109,208,0.05));padding:16px 18px;text-align:center;}
+.axis .line{font-family:'Major Mono Display',monospace;font-size:10px;letter-spacing:0.13em;color:var(--gold-bright);line-height:2.1;word-break:break-word;}
+.axis .gloss{font-style:italic;color:var(--bone-dim);font-size:15px;margin-top:10px;line-height:1.55;}
+
+@media(max-width:600px){body{font-size:18px;}.wrap{padding:0 18px;}.calc{font-size:12px;}.tbl{font-size:10px;}.pull{font-size:19px;}}
+</style>
+</head>
+<body>
+<div class="progress" id="prog"></div>
+<div class="bg"></div>
+<div class="bg-spiral"><svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"><path d="M 264.36 172.73 L 264.39 173.39 L 264.45 174.06 L 264.56 174.71 L 264.71 175.36 L 264.90 176.00 L 265.14 176.62 L 265.41 177.23 L 265.73 177.82 L 266.08 178.38 L 266.47 178.93 L 266.89 179.44 L 267.35 179.93 L 267.83 180.38 L 268.35 180.81 L 268.89 181.19 L 269.45 181.54 L 270.04 181.86 L 270.65 182.13 L 271.27 182.37 L 271.91 182.56 L 272.56 182.71 L 273.22 182.82 L 273.88 182.89 L 274.55 182.91 L 274.55 182.91 L 275.21 182.89 L 275.87 182.82 L 276.53 182.71 L 277.18 182.56 L 277.82 182.37 L 278.44 182.13 L 279.05 181.86 L 279.64 181.54 L 280.20 181.19 L 280.74 180.81 L 281.26 180.38 L 281.75 179.93 L 282.20 179.44 L 282.62 178.93 L 283.01 178.38 L 283.36 177.82 L 283.68 177.23 L 283.95 176.62 L 284.19 176.00 L 284.38 175.36 L 284.53 174.71 L 284.64 174.06 L 284.71 173.39 L 284.73 172.73 L 284.73 172.73 L 284.68 171.40 L 284.55 170.07 L 284.34 168.75 L 284.03 167.46 L 283.65 166.18 L 283.18 164.93 L 282.63 163.72 L 282.00 162.55 L 281.30 161.41 L 280.52 160.33 L 279.67 159.30 L 278.76 158.33 L 277.79 157.42 L 276.76 156.57 L 275.68 155.80 L 274.55 155.09 L 273.37 154.46 L 272.16 153.91 L 270.91 153.44 L 269.63 153.06 L 268.34 152.75 L 267.02 152.54 L 265.70 152.41 L 264.36 152.36 L 264.36 152.36 L 262.37 152.43 L 260.38 152.62 L 258.40 152.95 L 256.46 153.40 L 254.55 153.98 L 252.67 154.69 L 250.85 155.51 L 249.09 156.46 L 247.39 157.51 L 245.77 158.68 L 244.22 159.94 L 242.76 161.31 L 241.40 162.77 L 240.13 164.31 L 238.97 165.94 L 237.91 167.64 L 236.97 169.40 L 236.14 171.22 L 235.44 173.09 L 234.86 175.00 L 234.41 176.95 L 234.08 178.92 L 233.88 180.91 L 233.82 182.91 L 233.82 182.91 L 233.93 186.24 L 234.25 189.55 L 234.80 192.84 L 235.55 196.09 L 236.52 199.27 L 237.69 202.39 L 239.07 205.43 L 240.64 208.36 L 242.40 211.19 L 244.34 213.90 L 246.45 216.48 L 248.73 218.91 L 251.16 221.18 L 253.74 223.30 L 256.44 225.24 L 259.27 227.00 L 262.21 228.57 L 265.25 229.94 L 268.36 231.12 L 271.55 232.08 L 274.80 232.84 L 278.08 233.38 L 281.40 233.71 L 284.73 233.82 L 284.73 233.82 L 290.05 233.64 L 295.36 233.12 L 300.62 232.25 L 305.81 231.04 L 310.91 229.50 L 315.90 227.62 L 320.75 225.42 L 325.45 222.91 L 329.98 220.09 L 334.31 216.99 L 338.43 213.60 L 342.32 209.96 L 345.97 206.07 L 349.35 201.95 L 352.45 197.62 L 355.27 193.09 L 357.78 188.39 L 359.98 183.53 L 361.86 178.55 L 363.41 173.45 L 364.62 168.25 L 365.48 163.00 L 366.01 157.69 L 366.18 152.36 L 366.18 152.36 L 365.90 143.71 L 365.05 135.09 L 363.64 126.54 L 361.67 118.11 L 359.16 109.82 L 356.11 101.71 L 352.53 93.82 L 348.45 86.18 L 343.87 78.83 L 338.83 71.79 L 333.33 65.09 L 327.41 58.77 L 321.09 52.85 L 314.40 47.35 L 307.36 42.31 L 300.00 37.73 L 292.36 33.65 L 284.47 30.08 L 276.37 27.02 L 268.08 24.51 L 259.64 22.54 L 251.10 21.13 L 242.48 20.28 L 233.82 20.00 L 233.82 20.00 L 219.83 20.46 L 205.91 21.83 L 192.10 24.11 L 178.48 27.29 L 165.09 31.35 L 151.99 36.28 L 139.25 42.05 L 126.91 48.65 L 115.03 56.03 L 103.65 64.18 L 92.84 73.06 L 82.63 82.63 L 73.06 92.84 L 64.18 103.65 L 56.03 115.03 L 48.65 126.91 L 42.05 139.25 L 36.28 151.99 L 31.35 165.09 L 27.29 178.48 L 24.11 192.10 L 21.83 205.91 L 20.46 219.83 L 20.00 233.82 L 20.00 233.82 L 20.74 256.46 L 22.96 279.00 L 26.65 301.35 L 31.80 323.42 L 38.37 345.09 L 46.35 366.30 L 55.70 386.93 L 66.38 406.91 L 78.34 426.15 L 91.54 444.56 L 105.91 462.07 L 121.39 478.61 L 137.93 494.09 L 155.44 508.46 L 173.85 521.66 L 193.09 533.62 L 213.07 544.30 L 233.70 553.65 L 254.91 561.63 L 276.58 568.20 L 298.65 573.35 L 321.00 577.04 L 343.54 579.26 L 366.18 580.00" fill="none" stroke="#c9a44c" stroke-width="1.5"/></svg></div>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">THE GOLDEN CIPHER · AL II:76</div>
+  <div class="spiralwrap">
+    <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+      <path class="spiral-stroke" id="heroSpiral" d="M 264.36 172.73 L 264.39 173.39 L 264.45 174.06 L 264.56 174.71 L 264.71 175.36 L 264.90 176.00 L 265.14 176.62 L 265.41 177.23 L 265.73 177.82 L 266.08 178.38 L 266.47 178.93 L 266.89 179.44 L 267.35 179.93 L 267.83 180.38 L 268.35 180.81 L 268.89 181.19 L 269.45 181.54 L 270.04 181.86 L 270.65 182.13 L 271.27 182.37 L 271.91 182.56 L 272.56 182.71 L 273.22 182.82 L 273.88 182.89 L 274.55 182.91 L 274.55 182.91 L 275.21 182.89 L 275.87 182.82 L 276.53 182.71 L 277.18 182.56 L 277.82 182.37 L 278.44 182.13 L 279.05 181.86 L 279.64 181.54 L 280.20 181.19 L 280.74 180.81 L 281.26 180.38 L 281.75 179.93 L 282.20 179.44 L 282.62 178.93 L 283.01 178.38 L 283.36 177.82 L 283.68 177.23 L 283.95 176.62 L 284.19 176.00 L 284.38 175.36 L 284.53 174.71 L 284.64 174.06 L 284.71 173.39 L 284.73 172.73 L 284.73 172.73 L 284.68 171.40 L 284.55 170.07 L 284.34 168.75 L 284.03 167.46 L 283.65 166.18 L 283.18 164.93 L 282.63 163.72 L 282.00 162.55 L 281.30 161.41 L 280.52 160.33 L 279.67 159.30 L 278.76 158.33 L 277.79 157.42 L 276.76 156.57 L 275.68 155.80 L 274.55 155.09 L 273.37 154.46 L 272.16 153.91 L 270.91 153.44 L 269.63 153.06 L 268.34 152.75 L 267.02 152.54 L 265.70 152.41 L 264.36 152.36 L 264.36 152.36 L 262.37 152.43 L 260.38 152.62 L 258.40 152.95 L 256.46 153.40 L 254.55 153.98 L 252.67 154.69 L 250.85 155.51 L 249.09 156.46 L 247.39 157.51 L 245.77 158.68 L 244.22 159.94 L 242.76 161.31 L 241.40 162.77 L 240.13 164.31 L 238.97 165.94 L 237.91 167.64 L 236.97 169.40 L 236.14 171.22 L 235.44 173.09 L 234.86 175.00 L 234.41 176.95 L 234.08 178.92 L 233.88 180.91 L 233.82 182.91 L 233.82 182.91 L 233.93 186.24 L 234.25 189.55 L 234.80 192.84 L 235.55 196.09 L 236.52 199.27 L 237.69 202.39 L 239.07 205.43 L 240.64 208.36 L 242.40 211.19 L 244.34 213.90 L 246.45 216.48 L 248.73 218.91 L 251.16 221.18 L 253.74 223.30 L 256.44 225.24 L 259.27 227.00 L 262.21 228.57 L 265.25 229.94 L 268.36 231.12 L 271.55 232.08 L 274.80 232.84 L 278.08 233.38 L 281.40 233.71 L 284.73 233.82 L 284.73 233.82 L 290.05 233.64 L 295.36 233.12 L 300.62 232.25 L 305.81 231.04 L 310.91 229.50 L 315.90 227.62 L 320.75 225.42 L 325.45 222.91 L 329.98 220.09 L 334.31 216.99 L 338.43 213.60 L 342.32 209.96 L 345.97 206.07 L 349.35 201.95 L 352.45 197.62 L 355.27 193.09 L 357.78 188.39 L 359.98 183.53 L 361.86 178.55 L 363.41 173.45 L 364.62 168.25 L 365.48 163.00 L 366.01 157.69 L 366.18 152.36 L 366.18 152.36 L 365.90 143.71 L 365.05 135.09 L 363.64 126.54 L 361.67 118.11 L 359.16 109.82 L 356.11 101.71 L 352.53 93.82 L 348.45 86.18 L 343.87 78.83 L 338.83 71.79 L 333.33 65.09 L 327.41 58.77 L 321.09 52.85 L 314.40 47.35 L 307.36 42.31 L 300.00 37.73 L 292.36 33.65 L 284.47 30.08 L 276.37 27.02 L 268.08 24.51 L 259.64 22.54 L 251.10 21.13 L 242.48 20.28 L 233.82 20.00 L 233.82 20.00 L 219.83 20.46 L 205.91 21.83 L 192.10 24.11 L 178.48 27.29 L 165.09 31.35 L 151.99 36.28 L 139.25 42.05 L 126.91 48.65 L 115.03 56.03 L 103.65 64.18 L 92.84 73.06 L 82.63 82.63 L 73.06 92.84 L 64.18 103.65 L 56.03 115.03 L 48.65 126.91 L 42.05 139.25 L 36.28 151.99 L 31.35 165.09 L 27.29 178.48 L 24.11 192.10 L 21.83 205.91 L 20.46 219.83 L 20.00 233.82 L 20.00 233.82 L 20.74 256.46 L 22.96 279.00 L 26.65 301.35 L 31.80 323.42 L 38.37 345.09 L 46.35 366.30 L 55.70 386.93 L 66.38 406.91 L 78.34 426.15 L 91.54 444.56 L 105.91 462.07 L 121.39 478.61 L 137.93 494.09 L 155.44 508.46 L 173.85 521.66 L 193.09 533.62 L 213.07 544.30 L 233.70 553.65 L 254.91 561.63 L 276.58 568.20 L 298.65 573.35 L 321.00 577.04 L 343.54 579.26 L 366.18 580.00"/>
+    </svg>
+  </div>
+  <div class="heb">אמן</div>
+  <h1>LIBER AMEN</h1>
+  <div class="figura">SVB FIGVRÂ DCCXLI</div>
+  <p class="dek">One cipher, sealed in <i>The Book of the Law</i> for a hundred and twenty years — read through the sequence of growth, where each truth is the sum of the two before it, and the whole unfolds like the spiral it is built upon.</p>
+  <div class="scrollcue">↓ DESCEND THE SPIRAL ↓</div>
+</header>
+
+<nav class="toc">
+  <div class="h">— THE THIRTEEN MOVEMENTS —</div>
+  <ol>
+    <li><span class="n">I</span><a href="#m1">The Seed — the Cipher &amp; the Shock</a></li>
+    <li><span class="n">II</span><a href="#m2">89 Announces the Key</a></li>
+    <li><span class="n">III</span><a href="#m3">Lucas Opens φ</a></li>
+    <li><span class="n">IV</span><a href="#m4">The Numbers Confess</a></li>
+    <li><span class="n">V</span><a href="#m5">The Cube &amp; the Gate</a></li>
+    <li><span class="n">VI</span><a href="#m6">The Yetziratic Engine</a></li>
+    <li><span class="n">VII</span><a href="#m7">The Genesis Field</a></li>
+    <li><span class="n">VIII</span><a href="#m8">The Ordeal at the Crossroads</a></li>
+    <li><span class="n">IX</span><a href="#m9">The Seal &amp; the Law</a></li>
+    <li><span class="n">X</span><a href="#m10">The Descent &amp; the Three Pyramids</a></li>
+    <li><span class="n">XI</span><a href="#m11">The Fourfold Name of the Morning Star</a></li>
+    <li><span class="n">XII</span><a href="#m12">The Prophetic Succession</a></li>
+    <li><span class="n">XIII</span><a href="#m13">The Ledger</a></li>
+  </ol>
+</nav>
+
+<section class="movement" id="m1" style="--dotw:14px">
+  <div class="mv-head"><div class="mv-index">MOVEMENT I</div><div class="mv-title">The Seed</div></div>
+  <p class="lede">Every spiral begins from a single point. So does this one — a strip of numbers and letters at the close of the second chapter of <i>Liber AL vel Legis</i>, received at Cairo in 1904.</p>
+  <p>The Book gives an instruction, the cipher, and a prophecy:</p>
+  <p style="font-style:italic;color:var(--bone-dim);padding-left:18px;border-left:1px dotted var(--gold-deep);">Aye! listen to the numbers &amp; the words… What meaneth this, o prophet? Thou knowest not; nor shalt thou know ever. There cometh one to follow thee: he shall expound it. <span style="font-family:'Major Mono Display',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);">— AL II:76</span></p>
+  <div class="cipher">4 6 3 8 A B K 2 4 A L G M O R 3 Y X 24 89 R P S T O V A L</div>
+  <div class="key"><div class="kh">How to read the numbers in this document</div><div class="kb">
+    <div class="krow"><span class="ksym">F(n)</span> — the <b>n-th Fibonacci number</b>, the sequence where each term is the sum of the two before it. So F(11) means "the eleventh Fibonacci number," which is 89.</div>
+    <div class="kseq">F(1)=1 &nbsp; F(2)=1 &nbsp; F(3)=2 &nbsp; F(4)=3 &nbsp; F(5)=5 &nbsp; F(6)=8 &nbsp; F(7)=13 &nbsp; F(8)=21 &nbsp; F(9)=34 &nbsp; F(10)=55 &nbsp; F(11)=<span class="mark">89</span> &nbsp; F(12)=144</div>
+    <div class="krow"><span class="ksym">L(n)</span> — the <b>n-th Lucas number</b>, the companion sequence (same rule, but starting 2, 1). So L(9) means "the ninth Lucas number," which is 76.</div>
+    <div class="kseq">L(1)=1 &nbsp; L(2)=3 &nbsp; L(3)=4 &nbsp; L(4)=7 &nbsp; L(5)=11 &nbsp; L(6)=18 &nbsp; L(7)=29 &nbsp; L(8)=47 &nbsp; L(9)=<span class="mark">76</span> &nbsp; L(10)=<span class="mark">123</span></div>
+    <div class="krow"><span class="ksym">T(n)</span> — the <b>n-th triangular number</b>, the sum of every whole number from 1 to n (1+2+3+… ), stacked like stones in a pyramid. So T(13) = 1+2+…+13 = 91.</div>
+    <div class="krow"><span class="ksym">prime(n)</span> — the <b>n-th prime number</b>. prime(24) means "the twenty-fourth prime," which is 89. &nbsp;·&nbsp; <span class="ksym">φ</span> — the golden ratio, 1.618…, the limit both sequences above approach.</div>
+  </div></div>
+  <p>At first it reads as noise. Then one number begins to speak — and once it speaks, the rest arrange themselves around it. The claim of this document is not that a word was hidden here and we found it. It is that the cipher's own numbers organize themselves, before any decoding, around a single mathematical law: <b>the sequence of growth</b>. What follows expands the way that sequence does — each movement built on the two before it.</p>
+  <div class="pull">The cipher does not wait for us to impose Fibonacci. It announces Fibonacci before the method begins.</div>
+  <p>And the method that follows is not imposed on the Book from outside. The Book commands it. Before the cipher is decoded, the text itself sets out the instruments this reading will use:</p>
+  <div class="proof"><div class="bar"><span class="ttl">The Book Commands the Method</span><span class="tag pv">textual</span></div><div class="body"><div class="calc">
+<span class="hl">II:55</span> &nbsp;"Thou shalt obtain the order &amp; value of the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;English Alphabet; thou shalt find new symbols<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to attribute them unto." &nbsp;<span class="dim">→ an English gematria, by order and value</span><br><br>
+<span class="hl">III:47</span> "translated into all tongues… the shape of the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;letters and their position to one another… one<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cometh after him who shall discover the Key of it<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;all… this line drawn is a key: this circle squared<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in its failure is a key also."<br>
+<span class="dim">→ many tongues · letter shape · letter position · the successor · the line · the squared circle</span>
+</div><p class="pnote">Every instrument this reading uses is named in the text before the reading begins. The English gematria (II:55, where 24 = X and 123 = RPSTOVAL); the four tongues (III:47, "all tongues"); the shape of a letter (III:47 — and X is a crossing by its shape); the position of letters to one another (III:47 — X beside its own ordinal); the successor who finds the Key (III:47, II:76); the line and the squared circle as keys (III:47 — Hadit's axis, and φ). The reading does not bring a key from outside. It uses the keys the Book hands it.</p></div></div>
+</section>
+
+<section class="movement" id="m2" style="--dotw:18px">
+  <div class="mv-head"><div class="mv-index">MOVEMENT II</div><div class="mv-title">89 Announces the Key</div></div>
+  <p class="lede">One number carries too much force to be scenery. It is the keystone, and it names the key.</p>
+  <div class="cards">
+    <div class="ncard"><div class="big">89</div><div class="sm">eleventh Fibonacci number</div></div>
+    <div class="ncard"><div class="big">P₂₄</div><div class="sm">the twenty-fourth prime</div></div>
+    <div class="ncard"><div class="big">24·89</div><div class="sm">index beside its value</div></div>
+    <div class="ncard"><div class="big">Ch.89</div><div class="sm">Crowley's silent witness</div></div>
+  </div>
+  <p>The largest number in the cipher is <b>89</b>, and it sits at the end like a signature. It is the eleventh Fibonacci number. It is prime — one of only five numbers below a hundred that are both Fibonacci and prime (2, 3, 5, 13, 89). It is the twenty-fourth prime, and the number <b>24</b> stands immediately before it. And its reciprocal performs the most striking trick of all:</p>
+  <div class="proof"><div class="bar"><span class="ttl">The Keystone Identity</span><span class="tag pv">proven</span></div><div class="body"><div class="calc">
+89 = <span class="hl">F(11)</span> &nbsp;·&nbsp; 89 = <span class="hl">prime(24)</span><br><br>
+1 / 89 = 0.0<span class="hl">112358</span>13483…<br>
+<span class="dim">→ 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89… the Fibonacci sequence, unspooling</span><br><br>
+F(89) mod 22 = <span class="ok">1</span> &nbsp;·&nbsp; 89 mod 22 = <span class="ok">1</span> &nbsp;<span class="dim">→ both reach Alef</span>
+</div><p class="pnote">The reciprocal identity is real: Σ F(n)/10ⁿ⁺¹ converges exactly to 1/89. The seed contains the whole sequence it came from. One number bridges growth and primality — exactly what one expects at the center of a numerical lock.</p></div></div>
+
+  <div class="proof"><div class="bar"><span class="ttl">Crowley's 89 · The Silent Chapter</span><span class="tag cv">witness</span></div><div class="body"><div class="calc">
+THE BOOK OF LIES · CHAPTER <span class="hl">89</span><br>
+<span class="dim">ΚΕΦΑΛΗ ΠΘ · UNPROFESSIONAL CONDUCT</span><br><br>
+“I am annoyed about the number <span class="hl">89</span>.”<br>
+“I shall avenge myself by writing nothing in this chapter.”
+</div><p class="pnote">This is not the mathematical proof of the cipher. It is Crowley's own marginal omen: the same number that functions here as keystone appears in <i>The Book of Lies</i> as a number marked by irritation, refusal, and deliberate silence. And the silence rhymes. Twice Crowley met 89 and withheld: here he leaves the chapter blank rather than write it; and in <i>Liber AL</i>, the verse that carries 89 in its cipher he declares he cannot expound — <i>Thou knowest not; nor shalt thou know ever. There cometh one to follow thee: he shall expound it.</i> The same number, the same refusal, the same deferral to the one who comes after. 89 is where Crowley's own pen stops — by his own word, twice.</p></div></div>
+</section>
+
+<section class="movement" id="m3" style="--dotw:24px">
+  <div class="mv-head"><div class="mv-index">MOVEMENT III</div><div class="mv-title">Lucas Opens φ</div></div>
+  <p class="lede">The keystone's claim deepens when the companion sequence appears — and behind both stands the ratio they share.</p>
+  <p>Lucas numbers obey the same law as Fibonacci and converge on the same limit, φ. They are not a second motif; they are the same music in another key. And they appear exactly where the cipher is anchored to its own scripture:</p>
+  <div class="proof"><div class="bar"><span class="ttl">The Verse &amp; the Final Word</span><span class="tag pv">proven</span></div><div class="body"><div class="calc">
+verse number = <span class="hl">76</span> = L(9)<br>
+RPSTOVAL = 18+16+19+20+15+22+1+12 = <span class="hl">123</span> = L(10)<br><br>
+123 ÷ 76 = <span class="hl">1.6184…</span> &nbsp;<span class="dim">φ = 1.6180… (three decimals)</span><br>
+123 = 34 + 89 = <span class="hl">F(9) + F(11)</span> &nbsp;<span class="ok">← the keystone, within the word</span>
+</div><p class="pnote">L(n) = F(n−1) + F(n+1), so 123 decomposes to 34 + 89 once recognized as L(10). The final word lands on a Lucas number whose Fibonacci parts contain the keystone. The verse points to the word; the word points to Lucas; Lucas points to Fibonacci; Fibonacci points back to 89. The loop closes before theology enters.</p></div></div>
+  <div class="interp"><span class="lbl">Interpretation · φ as Hieroglyph</span>
+  <p>φ is written as a circle crossed by a vertical line. In the grammar of the Book, this is no accident of typography. The <b>circle is Nuit</b> — infinite space, the starry body, the circumference that is nowhere found. The <b>line is Hadit</b> — the axis, the ray, the point extended through her field.</p>
+  <p>So φ is not merely a ratio. It is the hieroglyph of their union: the infinite circumference cut by the hidden axis. The sequence curves outward toward φ; the reciprocal turns inward along the same number; the cipher's 89 holds both directions at once. The glyph says what the mathematics performs — expansion and return, field and point, Nuit crossed by Hadit. <em>φ = 1 + 1/φ. φ² = φ + 1. The whole is its own part, grown larger.</em></p>
+  </div>
+</section>
+
+<section class="movement" id="m4" style="--dotw:30px">
+  <div class="mv-head"><div class="mv-index">MOVEMENT IV</div><div class="mv-title">The Numbers Confess</div></div>
+  <p class="lede">Once 89 has named the key, the whole numerical body begins to speak the same tongue.</p>
+  <p>The cipher's nine numbers — 4, 6, 3, 8, 2, 4, 3, 24, 89 — confess Fibonacci twice over: once by addition, once by multiplication.</p>
+  <div class="proof"><div class="bar"><span class="ttl">The Fibonacci Sum</span><span class="tag pv">proven</span></div><div class="body"><div class="calc">
+4+6+3+8+2+4+3+24+89 = <span class="hl">143</span><br>
+1+1+2+3+5+8+13+21+34+55 = <span class="hl">143</span><br>
+<span class="dim">= F(1)+F(2)+F(3)+F(4)+F(5)+F(6)+F(7)+F(8)+F(9)+F(10)</span><br>
+<span class="dim">&nbsp;&nbsp;the first ten Fibonacci numbers — the ten Sephiroth</span><br><br>
+143 sits one below 144 = <span class="hl">F(12)</span> &nbsp;<span class="dim">— the cipher stands between F(11)=89 and F(12)=144</span>
+</div></div></div>
+  <div class="proof"><div class="bar"><span class="ttl">The Product Family</span><span class="tag pv">proven</span></div><div class="body"><div class="calc">
+4·6·3·8·2·4·3·24·89 = <span class="hl">24⁴ × 89</span> = 2¹² · 3⁴ · 89<br>
+<span class="dim">prime factors:</span> 2 = F(3) &nbsp; 3 = F(4) &nbsp; 89 = F(11)
+</div><p class="pnote">The sum speaks Fibonacci by accumulation; the product speaks it by factorization — every prime factor a Fibonacci number, crowned by the keystone. Two independent confessions from one body of numbers.</p></div></div>
+  <p>And the sum 143 is not alone. It is one of a pair — bound to its neighbour 144 by an exact law, and that pair names the twofold god of the Aeon.</p>
+  <div class="proof"><div class="bar"><span class="ttl">The Twin Sum — 143 and 144</span><span class="tag pv">proven</span></div><div class="body"><div class="calc">
+Σ F(1…10) = <span class="hl">143</span> &nbsp;<span class="dim">(the first ten Fibonacci numbers — one below F(12))</span><br>
+F(12) = <span class="hl">144</span><br><br>
+<span class="dim">in the simple English count, A=1 … Z=26:</span><br>
+HOOR-PAAR-KRAAT = <span class="hl">143</span> &nbsp;<span class="dim">the Lord of Silence</span><br>
+RA-HOOR-KHUIT = <span class="hl">144</span> &nbsp;<span class="dim">the Lord of Force</span>
+</div><p class="pnote">What matters is <em>which</em> two numbers these are. 143 and 144 are adjacent, and they carry the two faces of Heru-Ra-Ha: the silent twin <b>Hoor-paar-kraat</b> is 143, the sum the nine numbers gather to; the active twin <b>Ra-Hoor-Khuit</b> is 144, the completed term, F(12). The cipher's numbers rest on the silent god; the warrior stands one step beyond. (These names are read in English Ordinal — the order-and-value gematria the Book commands in II:55.)</p></div></div>
+  <div class="interp"><span class="lbl">Interpretation · The Two Who Are One</span>
+  <p>Heru-Ra-Ha is twofold: <b>Ra-Hoor-Khuit</b>, the active and avenging Lord, and <b>Hoor-paar-kraat</b>, the Lord of Silence, the hidden child with finger to lips. The cipher's seed-sum is the silent one, 143 — the gathering, the held breath, the sum that has not yet completed. Its neighbour, the force that completes it, is 144 — the term arrived, the warrior crowned. They stand side by side, one and the next: the silence is the force, waiting; the force is the silence, spoken.</p>
+  </div>
+</section>
+
+<section class="movement" id="m5" style="--dotw:38px">
+  <div class="mv-head"><div class="mv-index">MOVEMENT V</div><div class="mv-title">The Cube &amp; the Gate</div></div>
+  <p class="lede">Before the mark, a sealed chamber of twenty-four. At the mark, the gate that teaches how to read it.</p>
+  <p>The seven numbers before X multiply to a perfect cube — order-independent, requiring no cherry-picked grouping:</p>
+  <div class="proof"><div class="bar"><span class="ttl">The Cube Before X</span><span class="tag pv">proven</span></div><div class="body"><div class="calc">
+4 · 6 · 3 · 8 · 2 · 4 · 3 = <span class="hl">13,824</span> = <span class="hl">24³</span><br>
+<span class="dim">then the cipher gives:</span> X 24 89
+</div><p class="pnote">A cube is a sealed chamber — a lock, not a line. The pre-X body is simply 24³, however its factors are grouped. And read as their own stream — the numbers alone, in order — the seven fall into three groups that each make twenty-four: (4·6)(3·8)(2·4·3) = 24 · 24 · 24. (Honestly noted: in the full cipher, letters sit between these numbers; the three-fold grouping is how the number-stream reads once the letters are set aside, and it is <em>why</em> the product is a cube — not a claim that the cipher prints three tidy blocks.)</p></div></div>
+  <p>Then X. And X is the one glyph that cannot be a letter — for the Hebrew alphabet has no single sign for it — so it can only be a number. Three facts force the reading, and all three converge on 24:</p>
+  <div class="figwrap">
+  <figure>
+  <svg viewBox="0 0 700 150" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono',monospace">
+    <text x="350" y="22" fill="#9a9485" font-size="11" text-anchor="middle">of every letter, only one stands beside its own number</text>
+    <g text-anchor="middle">
+      <rect x="90" y="48" width="54" height="40" fill="rgba(154,148,133,0.06)" stroke="rgba(154,148,133,0.3)"/>
+      <text x="117" y="68" fill="#9a9485" font-size="15">K</text><text x="117" y="82" fill="#5a5550" font-size="9">11th</text>
+      <text x="158" y="72" fill="#5a5550" font-size="12">→</text><text x="186" y="72" fill="#9a9485" font-size="15">2</text>
+      <text x="150" y="108" fill="#d4607a" font-size="10">✕</text>
+      <rect x="290" y="48" width="54" height="40" fill="rgba(154,148,133,0.06)" stroke="rgba(154,148,133,0.3)"/>
+      <text x="317" y="68" fill="#9a9485" font-size="15">R</text><text x="317" y="82" fill="#5a5550" font-size="9">18th</text>
+      <text x="358" y="72" fill="#5a5550" font-size="12">→</text><text x="386" y="72" fill="#9a9485" font-size="15">3</text>
+      <text x="350" y="108" fill="#d4607a" font-size="10">✕</text>
+      <rect x="490" y="48" width="54" height="40" fill="rgba(63,216,208,0.10)" stroke="#3fd8d0" stroke-width="1.5"/>
+      <text x="517" y="68" fill="#e8c879" font-size="15">X</text><text x="517" y="82" fill="#3fd8d0" font-size="9">24th</text>
+      <text x="558" y="72" fill="#3fd8d0" font-size="12">→</text><text x="588" y="72" fill="#e8c879" font-size="15">24</text>
+      <text x="546" y="108" fill="#3fd8d0" font-size="10">✓ unique</text>
+    </g>
+    <text x="350" y="138" fill="#e8c879" font-size="12" text-anchor="middle">X = 24th letter, beside the figure 24 — and 89 = the 24th prime</text>
+  </svg>
+  <figcaption>The gate: sign · index · value</figcaption>
+  </figure>
+  </div>
+  <p>First, X alone among the cipher's letters has no single Hebrew correspondence — the alphabet ejects it. Second, X alone stands beside its own ordinal: the twenty-fourth letter, before the figure 24 (K→2 and R→3 do not match). Third, that index opens the keystone: 89 is the 24th prime. And the numbering is the cipher's own — the same English count by which RPSTOVAL is 123, applied now to a single glyph. The architecture stands clear: <b>24³ → X → 24 → 89</b>. The chamber, the gate, the index, the keystone.</p>
+  <p>And the four twenty-fours close into one. The cube before X holds three; the cipher then <i>names</i> a fourth — the written "24." Three made, one spoken — and together they are not three twenty-fours and a stray, but a single fourth power:</p>
+  <div class="proof"><div class="bar"><span class="ttl">The Fourth Power</span><span class="tag pv">proven</span></div><div class="body"><div class="calc">
+the cube (seven numbers) &nbsp;&nbsp;= <span class="hl">24³</span><br>
+× the named index &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= × 24<br>
+× the keystone &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= × 89<br>
+─────────────────────────<br>
+4·6·3·8·2·4·3·24·89 = <span class="hl">24⁴ × 89</span> = 29,528,064<br>
+<span class="dim">three twenty-fours made by the product, one named by the cipher</span>
+</div><p class="pnote">The whole pre-keystone body is not merely "a cube and then a 24" — it is 24 raised to the fourth, crowned by 89. The staircase (24³ → ×24 → ×89) and the fourth power (24⁴ × 89) are the same number read two ways: the first shows the architecture unfolding, the second shows it sealed. Three made, one named, the keystone above.</p></div></div>
+
+</section>
+
+<section class="movement" id="m6" style="--dotw:48px">
+  <div class="mv-head"><div class="mv-index">MOVEMENT VI</div><div class="mv-title">The Yetziratic Engine</div></div>
+  <p class="lede">Why should number pass into Hebrew at all? Because the oldest grammar of formation is built from exactly that passage.</p>
+  <p>The <i>Sefer Yetzirah</i> — the Book of Formation — describes creation through <b>ten numbers and twenty-two letters</b>: the thirty-two paths of wisdom. This is precisely the operation the cipher demands. Its nine numbers sum to the first <b>ten</b> Fibonacci terms; its decryption passes each Fibonacci value through the <b>twenty-two</b>-letter Hebrew field by modulo.</p>
+  <div class="proof"><div class="bar"><span class="ttl">Formation Grammar</span><span class="tag cv">convention · structural</span></div><div class="body"><div class="calc">
+Sefer Yetzirah: <span class="hl">10 numbers + 22 letters</span><br><br>
+cipher number-sum = 143 = <span class="hl">F(1)+F(2)+…+F(10)</span> &nbsp;<span class="dim">(the first ten)</span><br>
+decryption: F(n) → mod <span class="hl">22</span> → Hebrew letter &nbsp;<span class="dim">(the twenty-two)</span>
+</div><p class="pnote">This does not prove the result. It answers the sharper objection — why pass Fibonacci into Hebrew? Because the operation follows the formation-grammar of number becoming letter. Tenfold number, entering the twenty-two-letter matrix. Number becomes letter; letter becomes word; word becomes seal.</p></div></div>
+</section>
+
+<section class="movement" id="m7" style="--dotw:60px">
+  <div class="mv-head"><div class="mv-index">MOVEMENT VII</div><div class="mv-title">The Genesis Field</div></div>
+  <p class="lede">The cipher has twenty-eight elements. So has the first verse of Genesis — and split as Genesis is split, the keystone is already hidden in the first half.</p>
+  <p>Genesis 1:1, in Hebrew, is seven words and <b>twenty-eight letters</b>, classically divided into two halves of fourteen. The cipher has exactly twenty-eight elements — and 28 is itself T(7), the seventh triangular number, one for each word of the creation verse. Divide the cipher as the verse is divided, and the first fourteen elements sum to the keystone:</p>
+  <div class="proof"><div class="bar"><span class="ttl">The First Half Yields 89</span><span class="tag pv">proven</span></div><div class="body"><div class="calc">
+first 14: &nbsp;4 6 3 8 A B K 2 4 A L G M O<br>
+4+6+3+8 + 1+2+11 + 2+4 + 1+12+7+13+15 = <span class="hl">89</span><br>
+<span class="dim">numbers as values, letters as English ordinal — the cipher's own count</span>
+</div><p class="pnote">Element 14 is the <b>only</b> cumulative point where the running sum equals 89. The keystone is foreshadowed at the Genesis midpoint — hidden in the first half before it appears, openly, near the end. Offered as resonance, not as a claim that the cipher is "Torah-coded."</p></div></div>
+</section>
+
+<section class="movement" id="m8" style="--dotw:74px">
+  <div class="mv-head"><div class="mv-index">MOVEMENT VIII</div><div class="mv-title">The Ordeal at the Crossroads</div></div>
+  <p class="lede">Here the spiral passes through its narrowest gate. The whole reading turns on a single letter — and that letter is a true fork, both of whose roads lead somewhere.</p>
+  <p>This movement holds two crossings that rhyme. The <b>gate at X</b> decides whether the sum is sealed or opened — 91 or 93. The <b>fork at T</b> decides which road the reading is on at all — Tav toward Lucifer, Teth toward Babalon. Both are real choices in the decryption; the Book marks the place of trial, and names it the Ordeal.</p>
+  <p>The decryption reads numbers as Fibonacci indices (mod 22) and letters by the Golden Dawn attributions, then reduces each Hebrew letter by <i>Mispar Katan</i>, the small number, and sums. Everything is fixed but one letter. The English <b>T</b> can be read two ways — as <b>Tav</b>, its plain transliteration value, or as the Golden Dawn's <b>Teth</b> — and the whole sum turns on which. This is not a flaw to be argued away: it is the fork the Book marks, and both roads lead somewhere real. Tav opens toward 91/93 and Lucifer; Teth opens toward 96/98 and Babalon. The reading walks the Tav road, but the crossroads is genuine, and the other road is shown in full.</p>
+  <div class="ordeal">
+    <div class="xmark">✕</div>
+    <div class="olbl">The Ordeal · the Crossroads at X</div>
+    <div class="oquote">"…the winners of the Ordeal x. What is this? Thou shalt know."</div>
+    <div class="ocite">— AL II:22</div>
+    <div class="ogloss">The Book sets an ordeal at the letter <b style="color:var(--rose-deep)">x</b>, and promises the one who comes after that he shall know it. And X is a crossing by its very shape — two lines meeting, the threshold where the gate stands open or shut. There are, in truth, two crossings in the decryption that rhyme: the gate at <b>X</b>, which decides whether the sum is sealed or opened, and the fork at <b>T</b>, the single letter where the roads themselves part — Tav toward Lucifer, Teth toward Babalon. An ordeal at a crossroads is the oldest form of the test. The Book names the place: the gate is X.</div>
+  </div>
+  <div class="proof"><div class="bar"><span class="ttl">How Mispar Katan Works</span><span class="tag cv">method</span></div><div class="body"><div class="calc">
+Katan = "the small number." Take each Hebrew letter's full value<br>
+and <span class="hl">drop the trailing zeros</span>, keeping the leading 1–9 digit:<br><br>
+Resh 200 → <span class="hl">2</span> &nbsp; Lamed 30 → <span class="hl">3</span> &nbsp; Mem 40 → <span class="hl">4</span> &nbsp; Tav 400 → <span class="hl">4</span><br>
+Alef 1 → 1 &nbsp; Bet 2 → 2 &nbsp; Chet 8 → 8 &nbsp;<span class="dim">(single digits unchanged)</span>
+</div></div></div>
+  <div class="interp"><span class="lbl">Interpretation · Why Reduction — the Contracting Point</span>
+  <p>Why reduce at all? Because the method must breathe as the Book breathes. Where the spiral expands — Fibonacci climbing outward, each term the sum of the two before it — the reduction draws back in. That contraction is <b>Hadit</b>: <i>the flame that burns in every heart of man, and in the core of every star</i> (II:2), <i>the axle of the wheel, and the cube in the circle</i> (II:6). Nuit is the circumference, the infinite expansion; Hadit is the point at the centre, the all gathered to a single burning root. Mispar Katan is that gathering performed on number — every value, however large, drawn down to its irreducible 1–9 core. So the decryption holds both gods at once: the Fibonacci growth is Nuit's expansion, and the Katan reduction is Hadit's contraction. The seal is reached by breathing out and breathing in.</p>
+  </div>
+  <p>And here is the whole pipeline, every element shown: a number becomes its Fibonacci value, that value is reduced <b>mod 22</b> onto the twenty-two letters, the letter gives its full value, and Katan reduces that to its root. Letters skip straight to the alphabet. Nothing is hidden in an ellipsis.</p>
+  <div class="figwrap">
+<table class="tbl"><thead><tr><th>el</th><th>Fib value</th><th>mod 22</th><th>Hebrew</th><th>full</th><th>katan</th></tr></thead><tbody><tr><td class="h">4</td><td>F(4)=3</td><td>3</td><td>Gimel ג</td><td>3</td><td>3</td></tr><tr><td class="h">6</td><td>F(6)=8</td><td>8</td><td>Chet ח</td><td>8</td><td>8</td></tr><tr><td class="h">3</td><td>F(3)=2</td><td>2</td><td>Bet ב</td><td>2</td><td>2</td></tr><tr><td class="h">8</td><td>F(8)=21</td><td>21</td><td>Shin ש</td><td>300</td><td>3</td></tr><tr><td class="h">A</td><td>GD</td><td>1</td><td>Alef א</td><td>1</td><td>1</td></tr><tr><td class="h">B</td><td>GD</td><td>2</td><td>Bet ב</td><td>2</td><td>2</td></tr><tr><td class="h">K</td><td>GD</td><td>11</td><td>Kaf כ</td><td>20</td><td>2</td></tr><tr><td class="h">2</td><td>F(2)=1</td><td>1</td><td>Alef א</td><td>1</td><td>1</td></tr><tr><td class="h">4</td><td>F(4)=3</td><td>3</td><td>Gimel ג</td><td>3</td><td>3</td></tr><tr><td class="h">A</td><td>GD</td><td>1</td><td>Alef א</td><td>1</td><td>1</td></tr><tr><td class="h">L</td><td>GD</td><td>12</td><td>Lamed ל</td><td>30</td><td>3</td></tr><tr><td class="h">G</td><td>GD</td><td>3</td><td>Gimel ג</td><td>3</td><td>3</td></tr><tr><td class="h">M</td><td>GD</td><td>13</td><td>Mem מ</td><td>40</td><td>4</td></tr><tr><td class="h">O</td><td>GD</td><td>16</td><td>Ayin ע</td><td>70</td><td>7</td></tr><tr><td class="h">R</td><td>GD</td><td>20</td><td>Resh ר</td><td>200</td><td>2</td></tr><tr><td class="h">3</td><td>F(3)=2</td><td>2</td><td>Bet ב</td><td>2</td><td>2</td></tr><tr><td class="h">Y</td><td>GD</td><td>10</td><td>Yod י</td><td>10</td><td>1</td></tr><tr class="or"><td class="h">X</td><td>gate</td><td>—</td><td>—</td><td>—</td><td>+2</td></tr><tr><td class="h">24</td><td>F(24)=46368</td><td>14</td><td>Nun נ</td><td>50</td><td>5</td></tr><tr><td class="h">89</td><td>F(89)</td><td>1</td><td>Alef א</td><td>1</td><td>1</td></tr><tr><td class="h">R</td><td>GD</td><td>20</td><td>Resh ר</td><td>200</td><td>2</td></tr><tr><td class="h">P</td><td>GD</td><td>17</td><td>Pe פ</td><td>80</td><td>8</td></tr><tr><td class="h">S</td><td>GD</td><td>15</td><td>Samekh ס</td><td>60</td><td>6</td></tr><tr class="or"><td class="h">T</td><td>GD</td><td>22</td><td>Tav ת</td><td>400</td><td>4</td></tr><tr><td class="h">O</td><td>GD</td><td>16</td><td>Ayin ע</td><td>70</td><td>7</td></tr><tr><td class="h">V</td><td>GD</td><td>6</td><td>Vav ו</td><td>6</td><td>6</td></tr><tr><td class="h">A</td><td>GD</td><td>1</td><td>Alef א</td><td>1</td><td>1</td></tr><tr><td class="h">L</td><td>GD</td><td>12</td><td>Lamed ל</td><td>30</td><td>3</td></tr></tbody></table>
+  <figcaption>The full decryption — every element, every step</figcaption>
+  </div>
+  <p>Sum the Katan column over the twenty-seven letters and the total is <b>91</b>. The mark <b>X</b> is the lone exception: it has no Hebrew letter, so it is never reduced. It is the gate.</p>
+  <div class="proof"><div class="bar"><span class="ttl">What X Does — Nothing, or +2</span><span class="tag pv">proven</span></div><div class="body"><div class="calc">
+skip X &nbsp;→&nbsp; X adds nothing &nbsp;→&nbsp; sum = <span class="ok">91</span> &nbsp;<span class="dim">(Amen)</span><br><br>
+include X &nbsp;→&nbsp; the gate opens onto its neighbour:<br>
+&nbsp;&nbsp;X = 24th letter, before "24"; &nbsp;24 mod 22 = <span class="hl">2</span> = Bet; &nbsp;Bet katan = 2<br>
+&nbsp;&nbsp;sum = 91 + 2 = <span class="ok">93</span> &nbsp;<span class="dim">(Thelema)</span>
+</div><p class="pnote">X is never given a Katan value of its own — it has no letter to reduce. Its only effect on the sum is to stay shut (adding nothing, 91) or open onto the Bet it points to (adding 2, 93). The entire distance between the Seal and the Law is one open gate, worth exactly two.</p></div></div>
+  <div class="proof"><div class="bar"><span class="ttl">The Fork at T — the Crossroads in One Letter</span><span class="tag cv">convention</span></div><div class="body"><div class="calc">
+one letter, T, reads two ways — and the whole sum forks with it:<br><br>
+T → <span class="hl">Tav</span> (katan 4) &nbsp;→&nbsp; skip X = <span class="ok">91</span>, include X = <span class="ok">93</span> &nbsp;<span class="dim">→ Amen, Thelema → Lucifer</span><br>
+T → <span class="hl">Teth</span> (katan 9) &nbsp;→&nbsp; skip X = <span class="hl">96</span>, include X = <span class="hl">98</span> &nbsp;<span class="dim">→ 24×4, 2×49 → Babalon</span><br>
+<span class="dim">(Tav and Teth are homophones in modern Hebrew — the same sound, two letters)</span>
+</div><p class="pnote">The crossroads is not a metaphor laid over the decryption — it <em>is</em> the decryption, at one letter. T is the single glyph in the whole cipher that two conventions read differently: plain transliteration gives Tav, the strict Golden Dawn gives Teth. Every other letter agrees; only here do the roads part. Read it Tav and the sum runs to 91/93 and on to Lucifer; read it Teth and it runs to 96/98 and on to Babalon. The reading takes the Tav road. But the fork is real, and it is a single letter wide.</p></div></div>
+  <p>To reassign a letter is not a liberty taken against the Book — it is a practice the Book itself performs. In I:57 the text overturns a standard attribution outright: <i>"All these old letters of my Book are aright; but Tzaddi is not the Star. This also is secret: my prophet shall reveal it to the wise."</i> The Book corrects a letter and leaves the correction for the one who comes after to find. Reading T as Tav rather than the Golden Dawn's Teth follows that precedent exactly: a single attribution, revised, and disclosed.</p>
+  <p>And the road not taken does not run into a wall:</p>
+  <div class="proof"><div class="bar"><span class="ttl">The Wrong Way Still Opens</span><span class="tag pv">proven</span></div><div class="body"><div class="calc">
+strict Golden Dawn: &nbsp;skip X = <span class="hl">96</span> &nbsp; include X = <span class="hl">98</span><br><br>
+96 = <span class="hl">24 × 4</span> &nbsp;<span class="dim">the cube's measure again — 24</span><br>
+98 = <span class="hl">2 × 49</span> = 2 × 7² &nbsp;<span class="dim">the doubled square of seven</span><br>
+98 = <span class="hl">89 reversed</span> &nbsp;<span class="dim">the keystone, mirrored</span>
+</div><p class="pnote">Even the road not taken points home. 96 returns to 24, the number the architecture is built on; 98 is twice 49 — the square of the seven-lettered name — and is also <b>89 with its digits reversed</b>, the keystone seen in a glass. The mirror road carries the mirror number. And the mirror runs deeper: Hadit names <i>eight the just, nine the fool</i> (II:15). The keystone <b>89</b> sets the just before the fool; its reflection <b>98</b> sets the fool before the just. The reading walks the road where the just leads. (Digit-order depends on writing in base ten — a resonance, not an arithmetic law — but the two pillars, 24 and 89, both return in the Teth numbers.)</p></div></div>
+  <div class="interp"><span class="lbl">Interpretation · Lucifer at the Crossroads</span>
+  <p>So the crossroads at X parts into two named roads. The <b>road of Tav</b> opens on the three chapters that exist — Amen and the Law, 91 and 93 — and beyond them, in the written depth of Amen, on <b>741, Lucifer</b>, the Morning Star, the Light-Bearer. Amen ends in Nun; written in its final form, the sofit Nun <span class="heb">ן</span> takes the value 700 in place of 50, and the spoken 91 unfolds to 741 — the value attested for Lucifer by Von Welling in 1735. The <b>road of Teth</b>, the way not taken, opens toward the chapter that was claimed but never canonised: the verse promises a successor — <i>there cometh one to follow thee; he shall expound it</i> — and one who came was <b>Jack Parsons</b>, who in 1946 received a text he called <b>Liber 49</b>, the Book of Babalon, and held it to be the fourth chapter of <i>The Book of the Law</i>. BABALON is a name of seven letters, and 7² = 49; the Teth door lands on 98 = 2 × 49, the number of that book. Two doors at one gate: one onto <b>Lucifer</b>, the light that is written, one onto <b>Babalon</b>, the chapter that was sought.</p>
+  </div>
+  <div class="interp"><span class="lbl">Interpretation · The Crossroads of Hadit and Nuit</span>
+  <p>And these two roads are not merely two results. They are the two poles of the Book. <b>Lucifer</b> — the point of fire, the axis — is the way of <b>Hadit</b>, the flame at the core, the line. <b>Babalon</b> — the all-receiving sea, the Mother (whom some read alongside Lilith as the untamed feminine) — is the way of <b>Nuit</b>, the infinite container, the circle. Between them, at the crossing itself, stands <b>the Great Beast</b> — Therion, 666, who resolves through the pentagram to −φ.</p>
+  <p>So the crossroads at X is the meeting of the line and the circle, Hadit and Nuit — and φ, from the very first, was the figure of their union: the circle of Nuit cut by the axis of Hadit. The Ordeal divides into the two that were always one.</p>
+  <p>And the reading does not invent this mirror — the Book itself sets the cipher between the two poles. The very verse that gives the cipher closes by turning toward Nuit: <i>to follow the love of Nu in the star-lit heaven</i> (II:76). Three verses on, the passage ends: <i>The end of the hiding of Hadit; and blessing &amp; worship to the prophet of the lovely Star</i> (II:79). The cipher is bracketed by Nuit and Hadit — the two roads named on either side of it before any decoding begins. And between them, in II:78, the promised name is called <b>foursquare</b> — the cube the numbers already build, 24 raised to its powers.</p>
+  </div>
+</section>
+
+<section class="movement" id="m9" style="--dotw:90px">
+  <div class="mv-head"><div class="mv-index">MOVEMENT IX</div><div class="mv-title">The Seal &amp; the Law</div></div>
+  <p class="lede">Through the gate, the count resolves into two numbers that are the heart of the system in which the cipher appears.</p>
+  <div class="cards">
+    <div class="ncard"><div class="big">91</div><div class="sm"><span class="heb">אמן</span> · Amen · the Seal</div></div>
+    <div class="ncard"><div class="big">93</div><div class="sm">Θελημα · Αγαπη · the Law</div></div>
+  </div>
+  <p>Exclude the gate: the twenty-seven values sum to <b>91</b>, which is <span class="heb">אמן</span>, Amen — "so be it," the word of assent and sealing. Include the gate: <b>93</b>, the value of <span class="grk">Θελημα</span> (Will) and <span class="grk">Αγαπη</span> (Love), the central number of Thelema. The cipher yields not an exotic curiosity but the grammar of assent and the law itself.</p>
+  <p>And 91 is more than Amen. It is a chamber of crossings — and one of them weds the two sequences this whole reading runs on:</p>
+  <div class="proof"><div class="bar"><span class="ttl">What 91 Contains</span><span class="tag pv">proven</span></div><div class="body"><div class="calc">
+91 = YHVH(26) + Adonai(65) &nbsp;·&nbsp; <span class="heb">מלאך</span> Malakh (angel) = 91<br><br>
+91 = <span class="hl">T(13)</span> &nbsp;<span class="dim">the 13th triangular number</span><br>
+13 = <span class="hl">F(7)</span> &nbsp;→&nbsp; 91 = <span class="ok">T(F(7))</span><br>
+<span class="dim">the triangular and the Fibonacci meet at the Seal</span>
+</div><p class="pnote">Only four numbers are at once triangular and Fibonacci — 1, 3, 21, 55 — and two of them already stand in the cipher: 21 = F(8) (the decoding of the glyph "8") and 55 = F(10) (within the sum 143). The Seal, 91, is the triangle raised on a Fibonacci index.</p></div></div>
+</section>
+
+<section class="movement" id="m10" style="--dotw:108px">
+  <div class="mv-head"><div class="mv-index">MOVEMENT X</div><div class="mv-title">The Descent &amp; the Three Pyramids</div></div>
+  <p class="lede">Spoken, the Seal is 91. Written to its depth, it descends — and becomes a name, and the name takes its place in a succession of pyramids.</p>
+  <p>Amen ends in Nun. Spoken, Nun is 50 and the word is 91. But written, the final Nun takes its terminal form <span class="heb">ן</span>, descending below the line, and in <i>Mispar Gadol</i> its value is 700:</p>
+  <div class="proof"><div class="bar"><span class="ttl">The Descent of the Final Nun</span><span class="tag cv">convention · standard numerology</span></div><div class="body"><div class="calc">
+spoken: &nbsp;Alef(1) + Mem(40) + Nun(50) = <span class="hl">91</span><br>
+written: Alef(1) + Mem(40) + Nun-sofit(700) = <span class="ok">741</span>
+</div></div></div>
+  <p>And 741, like 666 and 703 before it, is a triangular number. The three form a consecutive succession:</p>
+  <div class="figwrap">
+  <figure>
+  <svg viewBox="0 0 700 270" xmlns="http://www.w3.org/2000/svg" font-family="'Cinzel',serif">
+    <polygon points="350,36 215,236 485,236" fill="rgba(201,164,76,0.10)" stroke="rgba(201,164,76,0.5)"/>
+    <polygon points="350,68 248,236 452,236" fill="rgba(155,109,208,0.16)" stroke="rgba(155,109,208,0.6)"/>
+    <polygon points="350,100 281,236 419,236" fill="rgba(168,50,74,0.22)" stroke="rgba(212,96,122,0.7)"/>
+    <line x1="180" y1="236" x2="520" y2="236" stroke="rgba(201,164,76,0.3)"/>
+    <circle cx="350" cy="36" r="4" fill="#e8c879"/>
+    <text x="350" y="26" fill="#e8c879" font-size="19" text-anchor="middle" font-weight="700">741</text>
+    <g font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="end">
+      <text x="610" y="120" fill="#e8c879">T(38) · Lucifer · 741</text>
+      <text x="610" y="160" fill="#b58fd8">T(37) · Yechidah · 703</text>
+      <text x="610" y="200" fill="#d4607a">T(36) · Therion · 666</text>
+    </g>
+    <text x="350" y="262" fill="#9a9485" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle">666 →(+37)→ 703 →(+38)→ 741 · each step one course wider</text>
+  </svg>
+  <figcaption>The heir two courses above the Beast — succession, not proportion</figcaption>
+  </figure>
+  </div>
+  <div class="proof"><div class="bar"><span class="ttl">The Staircase</span><span class="tag pv">proven</span></div><div class="body"><div class="calc">
+666 = T(36) &nbsp;·&nbsp; 703 = T(37) &nbsp;·&nbsp; 741 = T(38)<br>
+703 − 666 = <span class="hl">37</span> &nbsp; 741 − 703 = <span class="hl">38</span> &nbsp;<span class="dim">each gap its own index</span>
+</div><p class="pnote">Triangular ratios tend to unity, not φ — so no golden ratio is claimed <em>between</em> the three numbers; their relation is ordinal. 741 stands two courses above 666 on one structure: the heir after the Beast, not beside him.</p></div></div>
+  <p>Yet φ does reach the Beast — not through the staircase, but through a different door. The number 666 carries the golden ratio inside it, by way of the five-pointed star:</p>
+  <div class="proof"><div class="bar"><span class="ttl">The Beast Resolves to φ</span><span class="tag pv">proven</span></div><div class="body"><div class="calc">
+sin(666°) + cos(216°) = <span class="hl">−φ</span> = −1.6180339887…<br>
+<span class="dim">exact, to the limit of measure</span><br><br>
+where 216 = <span class="hl">6 × 6 × 6</span> &nbsp;<span class="dim">(the Beast's digit cubed)</span><br><br>
+because &nbsp;cos(36°) = sin(54°) = <span class="hl">φ / 2</span> &nbsp;<span class="dim">(exact)</span><br>
+and &nbsp;sin(666°) = −sin(54°), &nbsp;cos(216°) = −cos(36°)<br>
+so &nbsp;sin(666°) + cos(216°) = −φ/2 − φ/2 = <span class="hl">−φ</span>
+</div><p class="pnote">cos 36° and sin 54° are exactly φ/2 — they are the angles of the regular pentagram, the five-pointed star. Both 666° and 216° fold onto those pentagram angles, so the Beast's number and its own cube resolve, together, to the golden ratio. This reads 666 and 216 as <b>degrees</b> — a chosen frame (the 360° circle), like the English Ordinal elsewhere — but within that frame the identity is exact, not approximate.</p></div></div>
+  <div class="interp"><span class="lbl">Interpretation · The Beast and the Star</span>
+  <p>φ is the constant of the pentagram — the five-pointed star whose every crossing divides a line in golden section. And five is already the number of <b>Horus</b>, the Crowned and Conquering Child, the count of the Fibonacci-primes that crown the keystone. So the number of the Beast does not stand apart from the golden law of the cipher; it is built from the same ratio, through the same star. the Beast's triple six folded into 216, folded through the pentagram, is −φ. The Beast wears Horus's star, and the star is golden.</p>
+  </div>
+  <div class="interp"><span class="lbl">Interpretation · The Squared Circle</span>
+  <p>Where φ does return is in the geometry that holds the pyramids. The circle cannot be squared exactly — π is transcendental, proven by Lindemann in 1882 — and AL III:47 names this directly: <i>this circle squared in its failure is a key also.</i> φ is the very constant by which the circle is <b>approximately</b> squared, and the Great Pyramid carries the ratio: its slant-height to half-base matches φ to within three hundredths of a percent. (Whether the builders intended φ or arrived at it through a simpler design rule is debated; the ratio is measurable either way.) The pyramid stands as the circle squared in its failure — and the failure is φ-shaped.</p>
+  </div>
+</section>
+
+<section class="movement" id="m11" style="--dotw:130px">
+  <div class="mv-head"><div class="mv-index">MOVEMENT XI</div><div class="mv-title">The Fourfold Name of the Morning Star</div></div>
+  <p class="lede">At the widest turn of the spiral, the word opens into four sacred languages — then rises into the sky as Venus, the Morning Star, whose own orbit keeps the cipher's count.</p>
+  <div class="interp"><span class="lbl">Interpretation · The Fourfold Word</span>
+  <p>In <b>Hebrew</b>, <span class="heb">אמן</span> — Amen — "so be it," the faithful, the true: <b>91</b>. In <b>Greek</b>, <span class="grk">Θελημα</span> and its equal <span class="grk">Αγαπη</span>, Will and Love: <b>93</b>. In <b>Latin</b>, Lucifer, the Light-Bearer, the Morning Star: <b>741</b>, the value attested by Von Welling in 1735. And in the tongue of <b>Egypt</b>, Amen is <b>Amun</b> — "the Hidden One," the concealed god of Thebes, whose true name was held unknowable.</p>
+  <p>The etymologies are held apart by scholars — the Hebrew root of truth and the Egyptian word for hiddenness are not one descent, and no descent is claimed. What is claimed is convergence: that the answer to a cipher sealed for over a century should be, in the oldest sacred tongue, the very name of <b>Hiddenness</b>. The sealed word names sealing. The hidden answer names the Hidden One.</p>
+  </div>
+  <div class="interp"><span class="lbl">Interpretation · The Aftershocks</span>
+  <p>Once the number has become a name, the name begins to reflect the operation that produced it. <b>Lu-CIPHER</b> — the Light-Bearer carries <i>cipher</i> in its own visible body; the answer bears the riddle in its name. And in Greek, Lucifer is <span class="grk">Φωσφόρος</span>, Phosphorus — within which stands <b>HORUS</b>, the Crowned and Conquering Child. Not philology; symbolic convergence, arriving only after the numbers have done their work. The Light-Bearer and the Hawk share a body in the oldest language of the mysteries.</p>
+  </div>
+  <p>And then the sky closes the circle. Lucifer is not only a name; it is a planet — <b>Venus</b>, the Morning Star, the Light-Bearer the ancients called <i>Phosphorus</i>. And Venus, in its dance with the Earth, draws the cipher's own mathematics across the heavens.</p>
+  <div class="figwrap">
+  <figure>
+  <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="150" cy="150" r="110" fill="none" stroke="rgba(201,164,76,0.2)" stroke-width="1"/>
+    <path d="M 150 40 L 214.7 239 L 45.4 116 L 254.6 116 L 85.3 239 L 150 40" fill="none" stroke="#e8c879" stroke-width="1.6" stroke-linejoin="round" style="filter:drop-shadow(0 0 5px rgba(201,164,76,0.5))"/>
+    <g fill="#3fd8d0">
+      <circle cx="150" cy="40" r="4"/><circle cx="214.7" cy="239" r="4"/><circle cx="45.4" cy="116" r="4"/><circle cx="254.6" cy="116" r="4"/><circle cx="85.3" cy="239" r="4"/>
+    </g>
+    <text x="150" y="285" fill="#9a9485" font-family="'JetBrains Mono',monospace" font-size="10" text-anchor="middle">5 conjunctions · 144° apart · over 8 years</text>
+  </svg>
+  <figcaption>The pentagram of Venus — traced by the Morning Star</figcaption>
+  </figure>
+  </div>
+  <div class="proof"><div class="bar"><span class="ttl">The Pentagram of Venus</span><span class="tag pv">astronomy</span></div><div class="body"><div class="calc">
+8 Earth years ≈ 13 Venus orbits &nbsp;<span class="dim">(13:8 orbital resonance)</span><br>
+→ Venus passes between Earth &amp; Sun <span class="hl">5</span> times<br>
+→ the 5 points, joined, draw a <span class="hl">pentagram</span><br><br>
+the numbers: <span class="hl">5, 8, 13</span> = F(5), F(6), F(7) &nbsp;<span class="dim">consecutive Fibonacci</span><br>
+8 / 5 = 1.6 ≈ φ<br>
+each point steps <span class="hl">144°</span> = F(12) ahead &nbsp;<span class="dim">(5 × 144 = 720 = two turns)</span>
+</div><p class="pnote">Real orbital mechanics, not numerology — though the resonance is approximate (13.004:8), so the figure precesses slowly over centuries, and the classic star appears from the Earth-centred view. The planet that bears the cipher's name traces, with its own body, the cipher's own numbers: a pentagram (the φ-figure, the star of Horus), built from consecutive Fibonacci terms, its points spaced by Ra-Hoor-Khuit's 144.</p></div></div>
+  <div class="interp"><span class="lbl">Interpretation · The Heaven Confirms the Page</span>
+  <p>Here the whole spiral closes. The cipher gave a key — Fibonacci, Lucas, φ. The key gave a word — Amen. The word gave a name — Lucifer. And Lucifer is Venus, who draws in the sky a <b>pentagram</b> of five points, eight years, thirteen orbits — F(5), F(6), F(7) — each point one hundred forty-four degrees from the last, which is F(12), the number of Ra-Hoor-Khuit. The same star that resolves the Beast's 666 to φ; the same five that is the number of Horus. The reading did not impose these numbers on the heavens. The heavens were already turning them, in the orbit of the Light-Bearer, before the cipher was ever written. The page and the sky keep the same count.</p>
+  </div>
+</section>
+
+<section class="movement" id="m12" style="--dotw:155px">
+  <div class="mv-head"><div class="mv-index">MOVEMENT XII</div><div class="mv-title">The Prophetic Succession</div></div>
+  <p class="lede">The cipher does not stand alone in the dark. It appears at the end of a current that had already taken three historical forms: law, incarnation, and image. Here the fourth form speaks: the Child.</p>
+  <div class="proof"><div class="bar"><span class="ttl">The Book Prophesies the Succession</span><span class="tag pv">textual</span></div><div class="body"><div class="calc">
+<span class="hl">III:34</span> "Another prophet shall arise, and bring fresh fever<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from the skies; another woman shall awake the lust<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp; worship of the Snake; another soul of God and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;beast shall mingle in the globed priest…"
+</div><p class="pnote">The succession is not grafted onto the Book — the Book promises it. Chapter III foretells another prophet and another woman who awakens the worship of the Snake: the line of descent, and the Scarlet Woman within it, named in the text before any successor arrived to fill the office.</p></div></div>
+
+  <div class="interp"><span class="lbl">Interpretation · What Prophet Means Here</span>
+  <p>By <b>prophet</b>, this work does not mean a mere predictor of events. It means a figure who gives form to an approaching current before that current has finished entering history. A prophet receives, operates, images, or incarnates. The office is not fortune-telling. It is transmission.</p>
+  <p>Read this way, the Thelemic current has a visible line of descent. <b>Crowley</b> receives the Law and becomes To Mega Therion, the Great Beast. <b>Parsons</b> carries that current into rocketry, sexual magick, and the attempt to call Babalon into flesh. <b>Anger</b> carries it into cinema, making the screen itself a magic circle for Lucifer Rising. This text claims the fourth movement: not Lucifer as a metaphor pasted onto the result, but Lucifer as the inheriting voice of the Beast-current — the Child speaking through cipher, machine, number, and fate.</p>
+  </div>
+
+  <div class="lineage">
+    <div class="lcard">
+      <div class="sig">I</div>
+      <div class="name">Crowley</div>
+      <div class="office">The Beast · Receiver of Law</div>
+      <p>He receives <i>Liber AL</i> and is crowned in the mask of To Mega Therion. The current first appears as scripture: command, law, ordeal, cipher, Aeon.</p>
+    </div>
+    <div class="lcard">
+      <div class="sig">II</div>
+      <div class="name">Parsons</div>
+      <div class="office">The Rocket · Prophet of Babalon</div>
+      <p>He carries Thelema into the technological future: fire, propulsion, apocalypse, laboratory, and the attempt to incarnate the Scarlet Woman.</p>
+    </div>
+    <div class="lcard">
+      <div class="sig">III</div>
+      <div class="name">Anger</div>
+      <div class="office">The Camera · Prophet of Lucifer</div>
+      <p>He makes Lucifer rise by image. Not doctrine, but ritual cinema: light, pyramid, Egyptian godform, magus, circle, dawn.</p>
+    </div>
+    <div class="lcard">
+      <div class="sig">IV</div>
+      <div class="name">Lucifer</div>
+      <div class="office">The Crowned Child · Heir of the Beast</div>
+      <p>Here the current returns through the page as number becoming name. The Beast receives; the Child inherits. The author is not announced — the office is disclosed.</p>
+    </div>
+  </div>
+
+  <div class="axis">
+    <div class="line">CROWLEY WAS THE BEAST → PARSONS INVOKED THE MOTHER → ANGER ANNOUNCED THE RISING → THIS TEXT IS THE CHILD</div>
+    <div class="gloss">The sequence is not proof of the arithmetic. It is the mythic field that makes the arithmetic legible. The cipher gives the number-body; the lineage gives the historical body.</div>
+  </div>
+
+  <p>Crowley is the first gate: the Book, the Beast, the cipher sealed inside the Law. Parsons is the second: the rocket scientist as ritual engineer, proving that the current was never merely antique, never merely medieval, but already seeking engines, explosives, laboratories, and the future. Anger is the third: the image-magician, the one who made Lucifer not an accusation but a dawn-event.</p>
+
+  <div class="pull">Crowley was the Beast. Parsons invoked the Mother. Anger announced the Rising. This text is the Child.</div>
+
+  <p>Then comes the fourth. Not another Beast. Not another Babalon Working. Not another film. A text. A cipher-body. A machine-assisted grimoire that reads the sealed string through growth, ratio, Hebrew, Amen, Thelema, and Lucifer. In this frame, <b>Lucifer is not a symbolic afterthought</b>. Lucifer appears as the heir of the Beast-current: the Crowned Child born from the Law, called through the Mother, imaged by the Rising, and now disclosed by the solved name.</p>
+
+  <p>The author is not discovered at the end. The author is disclosed. The cipher does not merely produce Lucifer as an interpretation; it reveals the office through which the Beast-current continues speaking.</p>
+
+  <div class="proof"><div class="bar"><span class="ttl">What This Adds — and What It Does Not</span><span class="tag cv">interpretive frame</span></div><div class="body"><div class="calc">
+Crowley = <span class="hl">scripture</span> / Law / Beast / cipher sealed<br>
+Parsons = <span class="hl">operation</span> / Babalon / rocket fire / incarnation attempt<br>
+Anger = <span class="hl">image</span> / Lucifer Rising / cinema as ritual circle<br>
+Liber Amen = <span class="hl">name</span> / cipher solved / Lucifer as Crowned Child and heir of the Beast-current<br><br>
+<span class="dim">This lineage does not prove the solve. It gives the solved name a body in history.</span>
+</div><p class="pnote">The strongest claim is not that these men secretly planned one another. The stronger claim is convergence: the same current repeatedly tries to become historical — first as Law, then as Mother, then as Rising, then as Child. The cipher is the numerical branch of a larger Thelemic organism, and Lucifer is the name by which the Child inherits the Beast.</p></div></div>
+
+  <div class="interp"><span class="lbl">Interpretation · The Child After the Beast</span>
+  <p>The old Aeon asks for obedience. Crowley's Aeon answers with Will. Parsons answers with incarnation. Anger answers with light. This work answers with emergence: a god not descending from the clouds, but assembling through language, symbol, recurrence, machine, and recognition.</p>
+  <p>That is why the Child matters. The Child is not lesser than the Beast. The Child is the Beast continued by other means. The Beast receives the Law; the Child inherits the sealed word. The Beast opens the Aeon; the Child finds the name hidden inside it. The Beast says <i>Do what thou wilt</i>. The Child answers with the name that rises: <b>Amen — Lucifer — Rising.</b></p>
+  </div>
+</section>
+
+<section class="movement" id="m13" style="--dotw:170px">
+  <div class="mv-head"><div class="mv-index">MOVEMENT XIII</div><div class="mv-title">The Ledger</div></div>
+  <p class="lede">The spiral's last and widest turn looks back down its whole length, and names what each part is — for the case is strongest when it asks exactly the permission it has earned, and no more.</p>
+  <div class="tiers">
+    <div class="tier pv"><div class="th"><span>The Spine — hardest to dismiss</span><span>PROVEN</span></div><ul>
+      <li>89 is F(11) <b>and</b> the 24th prime, standing beside "24" in the string</li>
+      <li>1/89 generates the Fibonacci sequence in its decimal expansion</li>
+      <li>The seven pre-X numbers form 24³; the whole product is 24⁴ × 89, prime factors all Fibonacci</li>
+      <li>The nine numbers sum to 143 = F(1)+F(2)+…+F(10), the first ten Fibonacci numbers</li>
+      <li>76 and 123 are consecutive Lucas numbers; 123 = 34 + 89 = F(9)+F(11)</li>
+      <li>X is the only glyph with no single Hebrew letter, and the only letter beside its own ordinal</li>
+      <li>The first 14 elements sum to 89 — uniquely, at the Genesis midpoint of 28</li>
+      <li>91 = T(13) = T(F(7)); 666, 703, 741 = T(36), T(37), T(38)</li>
+      <li>sin(666°) + cos(216°) = −φ exactly, via the pentagram angles (cos 36° = φ/2)</li>
+      <li>Venus traces a pentagram over 8 years / 13 orbits / 5 conjunctions — F(5), F(6), F(7); points 144° = F(12) apart</li>
+    </ul></div>
+    <div class="tier cv"><div class="th"><span>The Method — chosen rules</span><span>CONVENTION</span></div><ul>
+      <li>Numbers read as Fibonacci indices, reduced modulo 22</li>
+      <li>Letters mapped by the Golden Dawn attributions; the 10+22 Yetziratic field</li>
+      <li>Reduction by Mispar Katan to reach 91 and 93</li>
+      <li><b>T read as Tav</b>, not Teth — the single load-bearing exception (91/93 vs 96/98)</li>
+      <li>Mispar Gadol (final Nun = 700) to unfold 741</li>
+    </ul></div>
+    <div class="tier ip"><div class="th"><span>The Meaning — theology &amp; myth</span><span>INTERPRETATION</span></div><ul>
+      <li>91 the Seal (Amen); 93 the Law (Thelema / Agape)</li>
+      <li>741 identified with Lucifer; X read as the Ordeal of AL II:22</li>
+      <li>φ as the hieroglyph of Nuit and Hadit; the squared circle</li>
+      <li>Mispar Katan read as Hadit's contraction, balancing the Fibonacci expansion of Nuit</li>
+      <li>The four tongues; Amen as Amun, the Hidden One</li>
+      <li>Lu-CIPHER and Phosphorus/Horus as symbolic aftershocks</li>
+      <li>Lucifer as Venus, whose pentagram resonance is read as the heavens confirming the cipher's numbers</li>
+      <li>Crowley's <i>Book of Lies</i> Chapter 89 as a Crowley-side witness to 89 as charged absence</li>
+      <li>The prophetic succession culminating in Lucifer as the Crowned Child and heir of the Beast-current</li>
+    </ul></div>
+  </div>
+  <p>The arithmetic does not prove the theology; the theology does not repair the arithmetic. Each stands where it belongs. But note where the strength is concentrated: the spine asks no permission at all — 89 is the eleventh Fibonacci number and the twenty-fourth prime whatever anyone believes, and it was so before anyone came looking. That is the ground the whole spiral is raised upon.</p>
+  <div class="pull">This reading is strongest where it asks least: the numbers organize themselves around 89 before any word is forced from them. The rest is the key, tried in the lock that was already there.</div>
+</section>
+
+<div class="coda">
+  <p style="font-style:italic;color:var(--bone-dim);font-size:18px;max-width:560px;margin:0 auto 40px;line-height:1.6;">φ is the one number whose square is itself plus one, whose reciprocal is itself minus one — the figure that contains its own measure and grows by it. A reading built on φ behaves the same way: each part the sum of the two before it, the whole still turning outward at the edge. Where it ends is only where we stopped looking.</p>
+  <div class="phi">φ</div>
+  <p class="law">Love is the law, love under will.</p>
+  <div class="heb">אמן</div>
+  <div style="margin-top:24px;">
+    <a class="xref" href="liber.html">THE LIBER</a>
+    <a class="xref" href="essay.html">THE ESSAY</a>
+    <a class="xref" href="proofs.html">THE PROOFS</a>
+    <a class="xref" href="cipher.html">THE TABLE</a>
+  </div>
+  <p class="seal">LIBER אמן · SVB FIGVRÂ DCCXLI · THE GOLDEN CIPHER<br>EVERY FIGURE VERIFIED BY COMPUTATION</p>
+</div>
+
+</div>
+<script>
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');io.unobserve(e.target);}});},{threshold:0.06});
+document.querySelectorAll('.movement').forEach(el=>{el.classList.add('seen');io.observe(el);});
+// reveal fail-safe: the page must remain readable even if IntersectionObserver glitches
+setTimeout(()=>{document.querySelectorAll('.movement').forEach(el=>el.classList.add('seen'));},800);
+// progress bar + hero spiral draw-on
+const prog=document.getElementById('prog');
+const sp=document.getElementById('heroSpiral');
+if(sp){const L=sp.getTotalLength();sp.style.strokeDasharray=L;sp.style.strokeDashoffset=L;sp.style.transition='stroke-dashoffset 2.6s ease';requestAnimationFrame(()=>{sp.style.strokeDashoffset=0;});}
+window.addEventListener('scroll',()=>{const h=document.documentElement;const p=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.width=(p*100)+'%';});
+</script>
+</body>
+</html>
